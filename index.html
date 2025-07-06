@@ -1,132 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Find Local Singles - Free</title>
+  <meta charset="UTF-8">
+  <title>Whatsapp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjR8Vqhf14dP4e9xPShhe0Ai26_1gJBLOyP0XzfzOTjvFuV-drLbNwXF7HKF_y5h-EgxplYp9KF3gwxFqIHDj7YGsmIsALDn-bHoQj2Lq2AJRTFrPkd6DkD_LuS0fqAz_hAMz6SkaWFZfY6vvlh3QEnE_Zq8O7-xudvK33lo0yCP_rM_OC9ea1JhTywpisJ/s320/392872649_709413401230029_5367863162604783273_n.png') center/cover no-repeat;
+      padding: 0;
+      font-family: Arial, sans-serif;
       height: 100vh;
+      background: url('https://file.hstatic.net/200000759485/article/khac_phuc_zalo_khong_thong_bao_tren_iphone_6d37ca2ad09d451da83a19412db27933.jpg') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
     }
 
-    .overlay {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(8px);
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-size: 1.4rem;
-      flex-direction: column;
+    /* Lớp phủ làm mờ */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(255, 255, 255, 0.75); /* Trắng đục */
+      z-index: 0;
     }
 
-    .container {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 30px;
-      border-radius: 20px;
-      max-width: 380px;
-      width: 90%;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    .box {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
       text-align: center;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      position: relative;
       z-index: 1;
-      animation: fadeIn 1s ease-in-out;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+    h1 {
+      color: #1877f2;
+      font-size: 24px;
+      margin-bottom: 10px;
     }
 
-    h2 {
-      margin-bottom: 20px;
-      color: #cc0033;
-      font-weight: 600;
-    }
-
-    label {
-      display: block;
-      margin-top: 10px;
-      margin-bottom: 5px;
-      font-weight: 500;
-    }
-
-    select, button {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
+    p {
       font-size: 16px;
+      color: #333;
     }
 
-    button {
-      background-color: #ff2f68;
-      color: white;
-      border: none;
-      cursor: pointer;
+    #countdown {
       font-weight: bold;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #cc004c;
-    }
-
-    @media (max-width: 480px) {
-      h2 {
-        font-size: 1.3rem;
-      }
+      color: #ff4444;
     }
   </style>
 </head>
 <body>
-
-  <div class="overlay" id="overlay">
-    <p>Searching for local singles...</p>
-  </div>
-
-  <div class="container" id="mainContent" style="display: none;">
-    <h2>Meet Hot Singles Near You</h2>
-
-    <label for="your-gender">I am:</label>
-    <select id="your-gender">
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-      <option value="nonbinary">Non-binary</option>
-    </select>
-
-    <label for="looking-for">Looking for:</label>
-    <select id="looking-for">
-      <option value="female">Female</option>
-      <option value="male">Male</option>
-      <option value="nonbinary">Non-binary</option>
-    </select>
-
-    <button onclick="findNow()">Find Now</button>
+  <div class="box">
+    <h1>Đang kết nối Zalo</h1>
+    <p>Chờ chút... <span id="countdown">3</span> seconds</p>
   </div>
 
   <script>
-    // Delay để tránh bot quét
-    setTimeout(() => {
-      document.getElementById('overlay').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
-    }, 3000); // 3s delay
+    let countdown = 3;
+    const countdownEl = document.getElementById("countdown");
 
-    // Link quảng cáo
-    function findNow() {
-      const adLink = "https://www.profitableratecpm.com/ehsj873i?key=b34cc7c4ee8b77a145388ddd572011cd"; // 🔁 Đổi thành link của bạn
-      window.location.href = adLink;
-    }
+    const timer = setInterval(() => {
+      countdown--;
+      countdownEl.textContent = countdown;
+      if (countdown <= 0) {
+        clearInterval(timer);
+        // 👉 Your redirect link here:
+        window.location.href = "https://seventhdisdainunlucky.com/ehsj873i?key=b34cc7c4ee8b77a145388ddd572011cd";
+      }
+    }, 1000);
   </script>
 </body>
 </html>

